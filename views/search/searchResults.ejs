@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+</head>
+
+<body>
+    <section class="worldwide-stats">
+        <div class="section-title">
+            <h2>World Total Statistics</h2>
+            <h2>Search Results for: <%= countryName %>
+            </h2>
+        </div>
+        <div>
+            <% if(searchResults.length===0){ %>
+                <h4>No Results Found</h4>
+                <%}else{ %>
+                    <% searchResults.map(results =>{ %>
+                    <div class="worldwide-stats-card">
+                        <h3>Date: <%= results.Date %></h3>
+                        <h4>Number of confirmed cases: <%= results.Cases %></h4>
+                    </div>
+                    <% });} %>
+        </div>
+    </section>
+</body>
+
+</html>

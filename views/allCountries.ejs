@@ -1,0 +1,32 @@
+<%- include('components/header') %>
+
+<section class="countries-stats">
+    <div class="section-title">
+        <h2>All Countries Stats</h2>
+    </div>
+    <div>
+        <% if(countries === 'undefined'){ %>
+            <h4>No Results Found</h4>
+            <%}else{ %>
+                <% countries.map(country =>{ %>
+                <div class="worldwide-stats-card">
+                    <h3>Country: <%= country.name %>, <%= country.countryCode %></h3>
+                    <h4>Total Confirmed Cases: <%= country.confirmed %></h4>
+                    <h4>Total Death Cases: <%= country.deaths %></h4>
+                    <h4>Total Recovered Cases: <%= country.recovered %></h4>
+                    <h4>Date: <%= country.date %></h4>
+
+                    <form action="/addToRecords" method="POST">
+                        <input type="hidden" name="country" value="<%= country.name %>">
+                        <input type="hidden" name="countryCode" value="<%= country.countryCode %>">
+                        <input type="hidden" name="confirmedCases" value="<%= country.confirmed %>">
+                        <input type="hidden" name="deathCases" value="<%= country.deaths %>">
+                        <input type="hidden" name="recoveredCases" value="<%= country.recovered %>">
+                        <input type="hidden" name="date" value="<%= country.date %>">
+                        <button type="submit">Add to my Records</button>
+                    </form>
+                </div>
+                <% });} %>
+    </div>
+</section>
+<%- include('components/footer') %>

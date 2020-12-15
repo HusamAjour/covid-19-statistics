@@ -1,0 +1,22 @@
+<%- include('components/header') %>
+
+<section>
+    <% if(recs.length===0){ %>
+        <h3>No Records Found</h3>
+        <div class="worldwide-stats-cards">
+        <%}else{ %>
+            <% recs.map( record=>{ %>
+                <div class="worldwide-stats-card">
+                    <h3>Country: <%= record.countryname %></h3>
+                    <h4>Date: <%= record.date %></h4>
+                    <form method="POST" action="/records/viewRecord">
+                        <input type="hidden" value="<%= record.id %>" name="id">
+                        <button type="submit">VIEW DETAILS</button>
+                    </form>
+                </div>
+                <% });} %>
+            </div>
+
+</section>
+
+<%- include('components/footer') %>
