@@ -1,40 +1,71 @@
-<section class="countries-stats">
+<%- include('../components/header') %>
+    <main>
 
-    <div class="section-title">
-        <% if(record==='undefined' ){ %>
-            <h4>No Results Found</h4>
-            <%}else{ %>
-                <h2>Covid Stats for <%= record[0].countryname %>
+        <section class="worldwide-stats record-section">
+            <div class="section-title">
+                <h2>Covid Stats for <span>
+                    <%= record[0].countryname %>
+                </span>
                 </h2>
-    </div>
-    <div>
-        <div class="worldwide-stats-card">
-            <h4>Total Confirmed Cases: <%= record[0].confirmed %>
-            </h4>
-            <h4>Total Death Cases: <%= record[0].deaths %>
-            </h4>
-            <h4>Total Recovered Cases: <%= record[0].recovered %>
-            </h4>
-            <h4>Date: <%= record[0].date %>
-            </h4>
+            </div>
+            <div class="white-stats-card">
+                <div class="white-stats-card-text">
 
-            <form action="/records/deleteRecord?_method=delete" method="POST">
-                <input type="hidden" name="id" value="<%= record[0].id %>">
-                <button type="submit">Delete</button>
-            </form>
-            <button>Update</button>
-        </div>
+                    <h4>Country Code : <%= record[0].countrycode %>
+                    </h4>
+                    <h4>Total Confirmed Cases: <%= record[0].confirmed %>
+                    </h4>
+                    <h4>Total Death Cases: <%= record[0].deaths %>
+                    </h4>
+                    <h4>Total Recovered Cases: <%= record[0].recovered %>
+                    </h4>
+                    <h4>Date: <%= record[0].date %>
+                    </h4>
+                </div>
+                <div class="white-stats-card-btn">
 
-        <form action="/records/updateRecord?_methor=put" method="POST" id="updateForm">
-            <input type="hidden" name="id" value="<%=  record[0].id %>">
-            <input type="text" name="country" value="<%=  record[0].name %>">
-            <input type="text" name="countryCode" value="<%=  record[0].countryCode %>">
-            <input type="number" name="confirmedCases" value="<%=  record[0].confirmed %>">
-            <input type="number" name="deathCases" value="<%=  record[0].deaths %>">
-            <input type="number" name="recoveredCases" value="<%=  record[0].recovered %>">
-            <input type="text" name="date" value="<%=  record[0].date %>">
-            <button type="submit">Update</button>
-        </form>
-        <%} %>
-    </div>
-</section>
+                    <form action="/records/deleteRecord?_method=delete" method="POST">
+                        <input type="hidden" name="id" value="<%= record[0].id %>">
+                        <button type="submit" class="btn">Delete</button>
+                    </form>
+
+                    <button id="updateFormBtn" class="btn">Update</button>
+                </div>
+                <div class="update-record-form" id="updateForm">
+
+                <form action="/records/updateRecord?_method=put" method="POST" >
+                    <input type="hidden" name="id" value="<%= record[0].id %>">
+                    <div>
+                        <div>
+                            <label>Country Name</label>
+                            <input type="text" name="country" value="<%= record[0].countryname %>">
+                        </div>
+                        <div>
+                            <label>Country Code</label>
+                            <input type="text" name="countryCode" value="<%= record[0].countrycode %>">
+                        </div>
+                        <div>
+                            <label>Confirmed</label>
+                            <input type="number" name="confirmedCases" value="<%= record[0].confirmed %>">
+                        </div>
+                        <div>                            
+                            <label>Deaths</label>
+                            <input type="number" name="deathCases" value="<%= record[0].deaths %>">
+                        </div>
+                        <div>
+                            <label>Recovered</label>
+                            <input type="number" name="recoveredCases" value="<%= record[0].recovered %>">
+                        </div>
+                        <div> 
+                            <label>Date</label>
+                            <input type="text" name="date" value="<%= record[0].date %>">
+                        </div>
+                        <div><button type="submit" class="btn">Update</button></div>
+                </form>
+            </div>
+            </div>
+            </div>
+        </section>
+    </main>
+
+    <%- include('../components/footer') %>

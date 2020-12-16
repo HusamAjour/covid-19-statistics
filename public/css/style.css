@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600 &display=swap');
+
+
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Nunito', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(245, 245, 245);
+}
+img {
+    display: block;
+}
+h1,
+h2,
+h3 {
+    font-weight: bold;
+}
+p,
+a,
+li,
+input,
+label,
+select,
+button,
+textarea {
+    font-size: 16px;
+}
+section {
+    padding: 50px 0 80px;
+}
+main {
+    max-width: 1100px;
+    margin: auto;
+}
+header .banner {
+    padding: 40px 0;
+    background-color: rgb(61, 86, 192);
+    color: #fff;
+    text-align: center;
+}
+header .banner img {
+    margin: auto auto 30px;
+    max-width: 150px;
+}
+header .banner h1 {
+    margin-bottom: 20px;
+    font-size: 25px;
+}
+header .banner h2 {
+    font-size: 20px;
+}
+header nav,
+footer {
+    padding: 10px;
+    background-color: rgb(51, 51, 51);
+}
+footer p {
+    text-align: center;
+    color: #fff;
+}
+header nav ul {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+header nav li a {
+    color: #fff;
+    text-decoration: none;
+}
+header nav li {
+    text-decoration: none;
+    padding: 5px 20px;
+}
+
+.worldwide-stats-cards {
+    display: flex;
+    justify-content: space-between;
+}
+.worldwide-stats-card {
+    max-width: 300px;
+    background-color: rgb(231, 73, 122);
+    border-radius: 5px;
+}
+.worldwide-stats-card h3,
+.worldwide-stats-card h4 {
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+}
+
+.section-title h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 22px;
+}
+.section-title span {
+    color: rgb(231, 73, 122);
+}
+.country-search-form form {
+    display: flex;
+    justify-content: space-between;
+}
+
+input {
+    margin-bottom: 20px;
+    padding: 8px 15px;
+    border: 1px solid rgb(204, 204, 204);
+}
+input:focus {
+    outline: none;
+    border: 1px solid rgb(231, 73, 122);
+}
+.btn {
+    min-height: 40px;
+    background-color: rgb(61, 86, 192);
+    border: 0;
+    outline: 0;
+    color: #fff;
+    padding: 8px 15px;
+    cursor: pointer;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+.white-stats-cards {
+    padding: 0 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.not-found h4 {
+    font-size: 18px;
+    text-align: center;
+}
+
+.white-stats-card {
+    padding: 8px 0 10px;
+    box-shadow: 0 0 10px rgb(217, 217, 217);
+    margin: 0 15px 30px;
+    width: 300px;
+    background-color: rgb(245, 245, 245);
+    text-align: center;
+    border-left: 4px solid rgb(231, 73, 122);
+}
+
+.white-stats-card-title {
+    padding: 0 5px;
+}
+.white-stats-card-title h3 {
+    color: rgb(231, 73, 122);
+    font-size: 18px;
+}
+.white-stats-card-text {
+    padding: 0 5px;
+    border-bottom: 1px dashed rgb(85, 85, 85);
+}
+.white-stats-card-text h4 {
+    font-size: 16px;
+}
+.white-stats-card-btn {
+    margin-top: 10px;
+}
+
+.white-stats-card-btn {
+    display: flex;
+    justify-content: space-around;
+}
+.record-section .white-stats-card {
+    margin: auto;
+}
+.update-record-form {
+    padding: 30px 0 15px;
+}
+
+@media(max-width:699px) {
+    section{
+        padding: 30px 0 30px;
+    }
+    p,
+    a,
+    li,
+    input,
+    label,
+    select,
+    button,
+    textarea {
+        font-size: 14px;
+    }
+    .worldwide-stats-cards {
+        padding: 0 15px;
+        flex-direction: column;
+    }
+    .worldwide-stats-card {
+        margin: 0 auto 30px;
+        max-width: 300px;
+    }
+    .country-search-form form {
+        padding: 0 15px;
+        flex-direction: column;
+    }
+    .country-search-form form div {
+        text-align: center;
+    }
+    .white-stats-cards {
+        padding: 0 5px;
+        flex-direction: column;
+    }
+    .white-stats-card {
+        margin: 0 auto 30px;
+    }
+
+}
