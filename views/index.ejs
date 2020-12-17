@@ -1,31 +1,47 @@
 <%- include('components/header') %>
 
-    <h1>Covid-19 Statistics</h1>
+    <main>
+        <section class="worldwide-stats">
+            <div class="section-title">
+                <h2>World Total Statistics</h2>
+            </div>
+            <div class="worldwide-stats-cards">
+                <div class="worldwide-stats-card">
+                    <h3>Total Confirmed: </h3>
+                    <h4>
+                        <%= overallStats.TotalConfirmed %>
+                    </h4>
+                </div>
+                <div class="worldwide-stats-card">
+                    <h3>Total Deaths:</h3>
+                    <h4>
+                        <%= overallStats.TotalDeaths %>
+                    </h4>
+                </div>
+                <div class="worldwide-stats-card">
+                    <h3>Total Recovered: </h3>
+                    <h4>
+                        <%= overallStats.TotalRecovered %>
+                    </h4>
+                </div>
+            </div>
+        </section>
 
-    <section class="worldwide-stats">
-        <h2>World Total Statistics</h2>
+        <section class="country-search-form">
+            <div class="section-title">
+                <h2>Get Statistics for a specific country</h2>
+            </div>
+            <form method="POST" action="/getCountryResult">
+                <input type="text" placeholder="Add country name" name="countryName" required>
+                <input type="date" placeholder="From date" name="fromDate" required>
+                <input type="date" placeholder="To date" name="toDate" required>
 
-        <div class="worldwide-stats-card">
-            <h3>Total Confirmed: <%= overallStats.TotalConfirmed %>
-            </h3>
-        </div>
-        <div class="worldwide-stats-card">
-            <h3>Total Deaths: <%= overallStats.TotalDeaths %>
-            </h3>
-        </div>
-        <div class="worldwide-stats-card">
-            <h3>Total Recovered: <%= overallStats.TotalRecovered %>
-            </h3>
-        </div>
-    </section>
+                <div>
+                    <button type="submit" class="btn">Search</button>
+                </div>
 
-    <section class="country-search-form">
-        <h2>Get Statistics for a specific country</h2>
-        <form method="POST" action="/getCountryResult">
-            <input type="text" placeholder="Add country name" name="countryName" required>
-            <input type="date" placeholder="From date" name="fromDate" required>
-            <input type="date" placeholder="To date" name="toDate" required>
-            <button type="submit">Search</button>
-        </form>
-    </section>
-<%- include('components/footer') %>
+            </form>
+        </section>
+    </main>
+
+    <%- include('components/footer') %>

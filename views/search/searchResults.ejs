@@ -1,31 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('../components/header') %>
+    <main>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Results</title>
-</head>
-
-<body>
-    <section class="worldwide-stats">
-        <div class="section-title">
-            <h2>World Total Statistics</h2>
-            <h2>Search Results for: <%= countryName %>
-            </h2>
-        </div>
-        <div>
-            <% if(searchResults.length===0){ %>
-                <h4>No Results Found</h4>
-                <%}else{ %>
-                    <% searchResults.map(results =>{ %>
-                    <div class="worldwide-stats-card">
-                        <h3>Date: <%= results.Date %></h3>
-                        <h4>Number of confirmed cases: <%= results.Cases %></h4>
-                    </div>
-                    <% });} %>
-        </div>
-    </section>
-</body>
-
-</html>
+        <section class="worldwide-stats">
+            <div class="section-title">
+                <h2>Search Results for: <span>
+                    <%= countryName %>
+                </span>
+                </h2>
+            </div>
+            <div class="white-stats-cards">
+                <% if(searchResults.length===0){ %>
+                    <h4>No Results Found</h4>
+                    <%}else{ %>
+                        <% searchResults.map(results=>{ %>
+                            <div class="white-stats-card">
+                                <div class="white-stats-card-title">
+                                    <h3>Date: <%= results.Date %>
+                                    </h3>
+                                </div>
+                                <div class="white-stats-card-text">
+                                    <h4>Number of confirmed cases: <%= results.Cases %>
+                                    </h4>
+                                </div>
+                            </div>
+                            <% });} %>
+            </div>
+        </section>
+    </main>
+    <%- include('../components/footer') %>

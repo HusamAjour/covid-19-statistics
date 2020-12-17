@@ -6,13 +6,15 @@ require('dotenv').config();
 const pg = require('pg');
 const superagent = require('superagent');
 const client = new pg.Client(process.env.DATABASE_URL);
-app.set('view engine', 'ejs');
-const PORT = process.env.PORT;
 const methodOverride = require('method-override');
+const PORT = process.env.PORT;
 
+app.use(express.static('./public'));
 app.use(methodOverride('_method'));
-
 app.use(express.urlencoded({extended: true}));
+app.set('view engine', 'ejs');
+
+
 app.get('/', homeHandler);
 app.post('/getCountryResult', searchHandler);
 app.get('/allCountries', allCountriesHandler);
@@ -29,7 +31,6 @@ app.use(errorHandler);
 function homeHandler(req, res) {
   let URL = `https://api.covid19api.com/world/total`;
   superagent(URL).then(results => {
-    console.log(results.body);
     res.status(200).render('./index', {overallStats: results.body});
   }).catch((e) => {
     errorHandler(e, req, res);
@@ -39,10 +40,8 @@ function homeHandler(req, res) {
 
 function searchHandler(req, res) {
   let {countryName, fromDate, toDate} = req.body;
-  console.log(countryName, fromDate, toDate);
   let URL = `https://api.covid19api.com/country/${countryName}/status/confirmed?from=${fromDate}&to=${toDate}`;
   superagent(URL).then(results => {
-    console.log(results.body);
     res.render('./search/searchResults', {
       searchResults: results.body,
       countryName: countryName
@@ -79,6 +78,7 @@ function recordsHandler(req, res){
     });
 }
 
+
 function addToRecordsHandler(req, res){
   let {country, countryCode, confirmedCases, deathCases, recoveredCases, date} = req.body;
   let SQL = `INSERT INTO records(countryName, countryCode, confirmed, deaths, recovered, date) VALUES ($1, $2, $3, $4, $5, $6)`;
@@ -92,12 +92,12 @@ function addToRecordsHandler(req, res){
       errorHandler(e, req, res);
     });
 }
+
+
 function getRecordHandler(req, res){
-  console.log(req.body.id);
   let SQL = `SELECT * FROM records WHERE id = $1`;
   client.query(SQL, [req.body.id])
     .then(result =>{
-      console.log(result.rows);
       res.render('./records/recordPage', {record: result.rows});
     })
     .catch((e) => {
@@ -121,7 +121,7 @@ function deleteRecordHandler(req, res){
 
 function updateRecordHandler(req, res){
   let {id, country, countryCode, confirmedCases, deathCases, recoveredCases, date} = req.body;
-  let VALUES = [id, country, countryCode, confirmedCases, deathCases, recoveredCases, date];
+  let VALUES = [country, countryCode, confirmedCases, deathCases, recoveredCases, date, id];
   let SQL = `UPDATE records SET countryname= $1, countryCode = $2, confirmed=$3, deaths= $4, recovered = $5, date =$6 WHERE id = $7 RETURNING *`;
   client.query(SQL, VALUES)
     .then(result =>{
@@ -131,9 +131,12 @@ function updateRecordHandler(req, res){
       errorHandler(e, req, res);
     });
 }
+
+
 function notFound(req, res) {
   res.status(400).send('Not Found');
 }
+
 
 function errorHandler(err, req, res) {
   res.status(400).send('Something went wrong');
@@ -148,6 +151,7 @@ function Country(data) {
   this.recovered = data.TotalRecovered;
   this.date = data.Date;
 }
+
 
 client.connect().then(() => {
   app.listen(PORT, () => {
