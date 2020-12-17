@@ -7,16 +7,7 @@ const pg = require('pg');
 const superagent = require('superagent');
 
 
-const client = new pg.Client({
-  user: 'husam',
-  password: '0000',
-  database: 'covid19',
-  port: 5432,
-  host: 'localhost',
-  ssl: true
-});
-
-/*const client = new pg.Client(process.env.DATABASE_URL);*/
+const client = new pg.Client(process.env.DATABASE_URL);
 const methodOverride = require('method-override');
 const PORT = process.env.PORT;
 
